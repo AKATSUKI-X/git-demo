@@ -1,0 +1,19 @@
+
+#課題管理表
+■画面定義書_M0001購入依頼登録画面と基本設計書_M0001購入依頼登録画面の内容が同じはなぜでしょうか。
+　⇒基本設計書は後回し、一応に無視でOK！
+◇nameは自己定義しており、大丈夫でしょうか。
+　■Actionクラス名⇒OK
+　□Actionクラス内のメソッド名(例：requestInit)⇒確認中
+　□Actionクラス内のresultのname(例：return "requestinit")⇒確認中
+　□テーブルのSIZAI(資材マスタ)に対してDTOのname(SizaiDto)⇒確認中
+　
+
+demo
+①SizaiDtoを作成 ⇒存在
+②BuyRequestDaoインターフェース作成
+③BuyRequestDao.xml実装
+④RequestForm実装
+⑤BuyRequestService.java実装
+⑥RequestActionのrequestInit実装
+⑦requestList.jspの実装
