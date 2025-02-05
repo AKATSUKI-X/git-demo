@@ -1,0 +1,107 @@
+1.正規表現とは
+  「いくつかの文字列を一つの形式で表現するための表現方法」
+  
+   例: [a-z._]+@[a-z._]+
+        kaku.takahiro@mamol.jp
+   例: [0-9]+-[0-9]+-[0-9]+
+        080-1234-5678
+        070-1111-1111
+
+2.正規表現で使用する特殊文字
+  . ^ $ [ ] * + ? | ( )  { }
+  ※一般文字として使用する場合"\"を付ける
+  
+  2.1 任意一文字"."
+      例：⇒.は.です
+            私は鳥です
+            君は虎です
+          ⇒..は..です
+            彼方は英雄です
+          ⇒.は...が..です
+            私は早起きが苦手です
+            彼はやる気がないです
+          ⇒金額は..\...です
+            金額は11.11です
+  2.2 直前文字繰り返し(0回以上) "*"
+      例：⇒aabbc*dd
+          aabbdd
+          aabbcdd
+          aabbcccdd
+          ⇒あああ.*ううう
+          あああいいいううう
+          あああううう
+          あああ   ううう
+  2.3 直前文字繰り返し(1回以上) "+"
+     例：⇒abcde+fg
+         abcdefg
+         abcdeeefg
+         ※NG：abcdfg
+  2.4 直前文字0回か1回出現 "?"
+     例：⇒windows?
+           windows
+           window
+         ⇒AAA ?and ?BBB
+           AAAandBBB
+           AAA and BBB
+           AAAand BBB
+         ⇒AAA.?BBB
+           AAABBB
+           AAACBBB
+           ※NG：AAACCBBB
+  2.5 直前文字出現回数指定 "{}"
+    例：⇒いいう{3}えええ
+          いいうううえええ
+        ⇒いい.{4}うう
+          いいabcdうう
+          いいあいうえうう
+        ⇒むむか{2,5}らら
+          むむかからら
+          むむかかかかからら
+          ※NG：むむかかかかかからら
+  2.6 行頭限定 "^"
+    例：⇒^aabbcc
+aabbcc
+        aabbcc
+  2.7 行末限定 "$"
+    例：⇒112233$
+       112233
+       11223344
+       112233  
+    例：⇒^あああううう$
+あああううう
+          あああううう
+  2.8 文字集指定 "[]"
+    例：⇒my name is [abcd]
+        my name is a
+        my name is b
+        ※NG：my name is e
+        ⇒.{2,3}[都道府県]
+         東京都
+         愛知県
+         鹿児島県
+         大阪府
+        ⇒my name is [a-zA-Z0-9]+
+        my name is tom
+        my name is jarry
+        ※NG：my name is kaku.takahiro
+        ⇒your name are [^abcd]+
+        your name are jim
+        ※NG:your name are bcd
+        注意：[]の中で、^以外の特殊文字が出現する場合、一般文字と認識される
+             例：[a-zA-Z0-9._]+@[a-zA-Z0-9.]+
+             kaku.takahiro@test.jp
+             kaku_takahiro@test.jp
+             NG:kaku*takahiro@test.jp
+ 2.9 グループ化
+   例：⇒(abc)+def
+         abcdef
+         abcabcdef
+         abcabcabcdef
+ 2.10 いずれか "|"
+   例：⇒出身地は(中国|日本)です
+       出身地は中国です
+       出身地は日本です
+       出身地はベトナムです
+        
+
+     
