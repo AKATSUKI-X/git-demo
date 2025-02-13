@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+a:link {
+	color: #ff99aa;
+}
+
+a:visited {
+	color: #ff99aa;
+}
+
+a:hover {
+	color: #99aaff;
+}
+
+a:active {
+	color: #ff99aa;
+}
+
+.center_a {
+	margin: auto;
+	border: medium solid black;
+	border-top: solid 10px;
+	border-bottom: solid 10px;
+	max-width: 700px;
+	border-radius: 30px;
+	padding: 100px;
+	box-shadow: 5px 4px 15px 5px #71ece67c;
+	-webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
+    animation: mymove 5s infinite;
+}
+
+body {
+	background-image: url(../images/bg.png);
+	background-position: center;
+	background-attachment: scroll;
+	background-repeat:no-repeat;
+
+}
+@-webkit-keyframes mymove {
+    50% {box-shadow: 10px 20px 30px blue;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    50% {box-shadow: 10px 20px 30px blue;}
+}

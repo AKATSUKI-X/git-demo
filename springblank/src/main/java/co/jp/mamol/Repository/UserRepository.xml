@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.jp.mamol.Repository.UserRepository">
+	<select id="findUserById"
+		resultType="co.jp.mamol.Dto.UserDto">
+		select user_id_seq , password, name, mail, tel, role_class, startdate, enddate
+		from usermas where user_id_seq=#{user_id_seq}
+		and startdate<![CDATA[<=]]>sysdate
+		and enddate<![CDATA[>=]]>sysdate
+	</select>
+
+	<insert id="regist"
+		parameterType="co.jp.mamol.Dto.UserDto"
+		>
+		insert into usermas values(#{user_id_seq},#{password},#{name},#{mail},#{tel},'1',sysdate,add_months(sysdate,12))
+	</insert>
+
+	<select id="getIdSeq" resultType="Integer">
+	 select usermas_id_seq.nextval from dual
+	</select>
+</mapper>

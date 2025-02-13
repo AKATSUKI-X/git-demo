@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.jp.mamol.Repository.BookRepository">
+
+	<select id="bookSearch"
+		resultType="co.jp.mamol.Dto.BookDto"
+		parameterType="co.jp.mamol.Dto.BookSearchCondition">
+		
+		select * from (
+		select rownum as rn,book_id_seq,name,author,isbn,category_class,lendstatus_class,res_status_class
+		from bookmas
+		<where>
+			<if test="name != ''">
+				and name like '%'|| #{name} || '%'
+			</if>
+			<if test="author != ''">
+				and author like '%'|| #{author} || '%'
+			</if>
+			<if test="isbn != ''">
+				and isbn like '%'|| #{isbn} || '%'
+			</if>
+			<if test="category_class != '' and category_class != 0">
+				and category_class = #{category_class}
+			</if>
+			<if test="lendstatus_class != '' and lendstatus_class != 0">
+				and lendstatus_class = #{lendstatus_class}
+			</if>
+			<if test="res_status_class != '' and res_status_class != 0">
+				and res_status_class = #{res_status_class}
+			</if>
+		</where>
+		order by book_id_seq
+		)where rn between #{startNo} and #{endNo}
+
+	</select>
+	
+	<select id="getCount"
+		resultType="int"
+		parameterType="co.jp.mamol.Dto.BookSearchCondition">
+		select count(book_id_seq)
+		from bookmas
+		<where>
+			<if test="name != ''">
+				and name like '%'|| #{name} || '%'
+			</if>
+			<if test="author != ''">
+				and author like '%'|| #{author} || '%'
+			</if>
+			<if test="isbn != ''">
+				and isbn like '%'|| #{isbn} || '%'
+			</if>
+			<if test="category_class != '' and category_class != 0">
+				and category_class = #{category_class}
+			</if>
+			<if test="lendstatus_class != '' and lendstatus_class != 0">
+				and lendstatus_class = #{lendstatus_class}
+			</if>
+			<if test="res_status_class != '' and res_status_class != 0">
+				and res_status_class = #{res_status_class}
+			</if>
+		</where>
+		order by book_id_seq
+	</select>
+
+</mapper>
